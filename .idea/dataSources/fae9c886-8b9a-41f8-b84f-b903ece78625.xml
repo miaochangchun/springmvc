@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="db_affairmanage@192.168.52.131">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="db_affairmanage">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="db_blog"/>
+    <schema id="4" parent="1" name="db_examsystem"/>
+    <schema id="5" parent="1" name="db_hr"/>
+    <schema id="6" parent="1" name="gradesystem"/>
+    <schema id="7" parent="1" name="information_schema"/>
+    <schema id="8" parent="1" name="mysql"/>
+    <schema id="9" parent="1" name="mysql_shiyan"/>
+    <schema id="10" parent="1" name="performance_schema"/>
+    <schema id="11" parent="1" name="test"/>
+    <table id="12" parent="2" name="Criticism"/>
+    <table id="13" parent="2" name="Employee"/>
+    <table id="14" parent="2" name="Message"/>
+    <table id="15" parent="2" name="Reply"/>
+    <column id="16" parent="12" name="cId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="17" parent="12" name="content">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="18" parent="12" name="criticism_time">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="19" parent="12" name="gmt_create">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="20" parent="12" name="gmt_modified">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="21" parent="12" name="eId">
+      <Position>6</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="22" parent="12" name="mId">
+      <Position>7</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="23" parent="12" name="FK_6nn9l80i8s2ki6lyt82f49qi5">
+      <ColNames>eId</ColNames>
+    </index>
+    <index id="24" parent="12" name="FK_e412tf53bfqu0lgm7gooyk7y9">
+      <ColNames>mId</ColNames>
+    </index>
+    <key id="25" parent="12" name="PRIMARY">
+      <ColNames>cId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="26" parent="12" name="FK_6nn9l80i8s2ki6lyt82f49qi5">
+      <ColNames>eId</ColNames>
+      <RefSchemaName>db_affairmanage</RefSchemaName>
+      <RefTableName>Employee</RefTableName>
+      <RefColNames>eId</RefColNames>
+    </foreign-key>
+    <foreign-key id="27" parent="12" name="FK_e412tf53bfqu0lgm7gooyk7y9">
+      <ColNames>mId</ColNames>
+      <RefSchemaName>db_affairmanage</RefSchemaName>
+      <RefTableName>Message</RefTableName>
+      <RefColNames>mId</RefColNames>
+    </foreign-key>
+    <column id="28" parent="13" name="eId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="29" parent="13" name="birth">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="30" parent="13" name="gmt_create">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="31" parent="13" name="gmt_modified">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="32" parent="13" name="join_time">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="33" parent="13" name="is_lead">
+      <Position>6</Position>
+      <DataType>bit(1)|0</DataType>
+    </column>
+    <column id="34" parent="13" name="is_male">
+      <Position>7</Position>
+      <DataType>bit(1)|0</DataType>
+    </column>
+    <column id="35" parent="13" name="password">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="36" parent="13" name="phone">
+      <Position>9</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="37" parent="13" name="place">
+      <Position>10</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="38" parent="13" name="username">
+      <Position>11</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="39" parent="13" name="PRIMARY">
+      <ColNames>eId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="40" parent="14" name="mId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="41" parent="14" name="content">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="42" parent="14" name="gmt_create">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="43" parent="14" name="gmt_modified">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="44" parent="14" name="publish_time">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="45" parent="14" name="title">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="46" parent="14" name="eId">
+      <Position>7</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="47" parent="14" name="FK_i1os65ow2eultgl5csc9xly2r">
+      <ColNames>eId</ColNames>
+    </index>
+    <index id="48" parent="14" name="UK_3r6vt5ajj8ddhfuis1orhkn2g">
+      <ColNames>title</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="49" parent="14" name="PRIMARY">
+      <ColNames>mId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="50" parent="14" name="UK_3r6vt5ajj8ddhfuis1orhkn2g">
+      <ColNames>title</ColNames>
+      <UnderlyingIndexName>UK_3r6vt5ajj8ddhfuis1orhkn2g</UnderlyingIndexName>
+    </key>
+    <foreign-key id="51" parent="14" name="FK_i1os65ow2eultgl5csc9xly2r">
+      <ColNames>eId</ColNames>
+      <RefSchemaName>db_affairmanage</RefSchemaName>
+      <RefTableName>Employee</RefTableName>
+      <RefColNames>eId</RefColNames>
+    </foreign-key>
+    <column id="52" parent="15" name="rId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="53" parent="15" name="content">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="54" parent="15" name="gmt_create">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="55" parent="15" name="gmt_modified">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="56" parent="15" name="reply_time">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="57" parent="15" name="eId">
+      <Position>6</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="58" parent="15" name="mId">
+      <Position>7</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="59" parent="15" name="FK_gvs3yjmkw8bfd01a573pmgkjs">
+      <ColNames>eId</ColNames>
+    </index>
+    <index id="60" parent="15" name="FK_rv12vfi1iqun5tlrt2usnllnd">
+      <ColNames>mId</ColNames>
+    </index>
+    <key id="61" parent="15" name="PRIMARY">
+      <ColNames>rId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="15" name="FK_gvs3yjmkw8bfd01a573pmgkjs">
+      <ColNames>eId</ColNames>
+      <RefSchemaName>db_affairmanage</RefSchemaName>
+      <RefTableName>Employee</RefTableName>
+      <RefColNames>eId</RefColNames>
+    </foreign-key>
+    <foreign-key id="63" parent="15" name="FK_rv12vfi1iqun5tlrt2usnllnd">
+      <ColNames>mId</ColNames>
+      <RefSchemaName>db_affairmanage</RefSchemaName>
+      <RefTableName>Message</RefTableName>
+      <RefColNames>mId</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
