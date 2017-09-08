@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 /**
  * Created by 10048 on 2017/9/6.
@@ -133,6 +134,63 @@ public class MainController {
         message.setPublishTime(new Date());
         messageDAO.addMessage(message);
         return "publishNewMsg";
+    }
 
+    @RequestMapping(value = "criticismPublish", method = RequestMethod.POST)
+    public String  criticismPublish(@RequestParam("content") String content, @RequestParam("mId") String mId, HttpSession session, Model model) {
+        Criticism criticism = new Criticism();
+        criticism.setContent(content);
+        criticism.setEmployee((Employee)session.getAttribute("employee"));
+        criticism.setCriticismTime(new Date());
+        criticism.setGmtCrete(new Date());
+        criticism.setGmtModified(new Date());
+        criticism.setMessage(messageDAO.findMessageById(Long.parseLong(mId)));
+        System.out.println(criticism);
+        criticismDAO.addCriticism(criticism);
+        model.addAttribute("criticism", criticism);
+
+        Message message = messageDAO.findMessageById(Long.parseLong(mId));
+        model.addAttribute("message", message);
+
+        List<Reply> replies = replyDAO.findReplyByMsgId(Long.parseLong(mId));
+        model.addAttribute("replies", replies);
+
+        return "showMsg";
+    }
+
+    @RequestMapping(value = "replyPublish", method = RequestMethod.POST)
+    public String replyPublish(@RequestParam("content") String content, @RequestParam("mId") String mId, HttpSession session, Model model) {
+        Reply reply = new Reply();
+        reply.setContent(content);
+        reply.setGmtCrete(new Date());
+        reply.setGmtModified(new Date());
+        reply.setReplyTime(new Date());
+        reply.setEmployee((Employee) session.getAttribute("employee"));
+        reply.setMessage(messageDAO.findMessageById(Long.parseLong(mId)));
+        replyDAO.addReplay(reply);
+
+        List<Reply> replies = replyDAO.findReplyByMsgId(Long.parseLong(mId));
+        model.addAttribute("replies", replies);
+
+        Criticism criticism = criticismDAO.findCriticismByMsgId(Long.parseLong(mId));
+        model.addAttribute("criticism", criticism);
+
+        Message message = messageDAO.findMessageById(Long.parseLong(mId));
+        model.addAttribute("message", message);
+
+        return "showMsg";
+    }
+
+    @RequestMapping(value = "replyPublish", method = RequestMethod.GET)
+    public String replyPublish(@RequestParam("mId") String mId, HttpSession session, Model model) {
+        List<Reply> replies = replyDAO.findReplyByMsgId(Long.parseLong(mId));
+        model.addAttribute("replies", replies);
+
+        Criticism criticism = criticismDAO.findCriticismByMsgId(Long.parseLong(mId));
+        model.addAttribute("criticism", criticism);
+
+        Message message = messageDAO.findMessageById(Long.parseLong(mId));
+        model.addAttribute("message", message);
+        return "showMsg";
     }
 }

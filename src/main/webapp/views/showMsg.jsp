@@ -13,6 +13,15 @@
     <title>企业日常事务管理系统-查看具体消息</title>
     <link href="css/css.css" type="text/css" rel="stylesheet" media="all" />
     <script src="js/menu.js" type="text/javascript"></script>
+    <script src="/ueditor/ueditor.config.js"></script>
+    <script src="/ueditor/ueditor.all.min.js"></script>
+    <script src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript">
+        UE.getEditor('myEditor');
+        function clearLocalData () {
+            UE.getEditor('myEditor').execCommand( "clearlocaldata" );
+        }
+    </script>
 </head>
 <body>
     <div id="topexplain">企业日常事务管理系统，为企业内部通信提供最简便的服务！</div>
@@ -53,14 +62,39 @@
                 </div>
 
                 <!--批复-->
-                <div style="margin-top: 30px;">
-                    <h5 style="color:red">领导批复:${criticism == null ? "暂无" : criticism.content}</h5>
-                    <div align="right">
-                        批复人：${criticism.employee.username}
-                        批复时间：${criticism.criticismTime}
-                    </div>
+                <div style="margin-top: 30px; margin-bottom: 20px;">
+                    <c:choose>
+                        <c:when test="${criticism != null}">        <%--已经有批复了，显示出来--%>
+                            <h5 style="color:red">领导批复:${criticism.content}</h5>
+                            <div align="right">
+                                批复人：${criticism.employee.username}
+                                批复时间：${criticism.criticismTime}
+                            </div>
+                            <hr/>
+                        </c:when>
+                        <c:otherwise>               <%--没有批复了，已经登录了，可以批复，没有登录，需要先登录--%>
+                            <c:choose>
+                                <c:when test="${employee == null}">
+                                    请登录后才可以发表评论。
+                                </c:when>
+                                <c:when test="${employee.lead == false}">
+
+                                </c:when>
+                                <c:otherwise>       <%--如果领导已经批复了，则不能在批复了；没有批复，则可以批复。--%>
+                                    <form action="criticismPublish" method="post">
+                                        <p style="margin-top: 20px;margin-bottom: 20px;">批复内容：<textarea id="myEditor" name="content"></textarea></p>
+                                        <input type="hidden" name="mId" value="${message.mId}">
+                                        <p align="center">
+                                            <input type="submit" value="提交" />
+                                            <input type="reset" onclick="clearLocalData()" value="重置" />
+                                        </p>
+                                    </form>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
-                <hr/>
+
 
                 <!--回复-->
                 <c:forEach items="${replies}" var="reply">
@@ -72,6 +106,24 @@
                         <hr/>
                     </div>
                 </c:forEach>
+
+                <c:choose>  <%--非领导人员可以回复，不能批复。--%>
+                    <c:when test="${employee == null}">
+                    </c:when>
+                    <c:when test="${employee.lead == false}">
+                        <form action="replyPublish" method="post">
+                            <p style="margin-top: 20px;margin-bottom: 20px;">回复内容：<textarea id="myEditor" name="content"></textarea></p>
+                            <input type="hidden" name="mId" value="${message.mId}">
+                            <p align="center">
+                                <input type="submit" value="提交" />
+                                <input type="reset" onclick="clearLocalData()" value="重置" />
+                            </p>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+
+                    </c:otherwise>
+                </c:choose>
 
                 <%--<div align="center">--%>
                     <%--第<c:forEach varStatus="stat" begin="1" end="${page.totalPage}">--%>
@@ -111,8 +163,8 @@
         </div>
     </div>
 
-    <div id="indexsec"></div>
-    <div class="copyright" style="right: 0px; left: 0px;">
+    <%--<div id="indexsec"></div>--%>
+    <div class="copyright" style="right: 0px; left: 0px; margin-top: 10px;">
         <ul>
             <li></li>
             <li>企业日常事务管理系统 &nbsp;&copy;2009-2010</li>

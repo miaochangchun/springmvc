@@ -118,7 +118,7 @@ a:active{color:#123472; text-decoration: underline;}
 	border:1px solid #AAB6CC;
 	display:block;
 	clear:both;
-	position: fixed;
+	position: relative;
 	bottom:0;
 }
 .copyright ul{margin:0px; padding:0; list-style:none;}
