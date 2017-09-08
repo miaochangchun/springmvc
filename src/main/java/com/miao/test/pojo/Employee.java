@@ -13,28 +13,28 @@ public class Employee {
     @GeneratedValue
     private Long eId;			//员工编号
 
-    @Column
-    private String username;	    //员工姓名
+    @Column(name = "username", unique = true)
+    private String username;	    //员工姓名，不能重复
 
-    @Column(name = "is_male")
+    @Column(name = "is_male", nullable = false)
     private Boolean male;	        //员工性别,是否为男性
 
-    @Column
+    @Column(name = "birth", nullable = false)
     private Date birth;		    //出生日期
 
-    @Column
+    @Column(name = "phone")
     private String phone;	        //办公室电话
 
-    @Column
+    @Column(name = "place")
     private String place;	        //住址
 
-    @Column(name = "join_time")
+    @Column(name = "join_time", nullable = false)
     private Date joinTime;			//入职时间
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;		//系统口令
 
-    @Column(name = "is_lead")
+    @Column(name = "is_lead", nullable = false)
     private Boolean lead;			//是否为管理层领导
 
     @Column(name = "gmt_create", insertable = true, updatable = false)

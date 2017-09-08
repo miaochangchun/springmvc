@@ -11,18 +11,18 @@ public class Message {
     @Id@GeneratedValue
     private Long mId;
 
-    @Column(name = "title", unique = true)
-    private String title;
+    @Column(name = "title", unique = true, nullable = false)
+    private String title;           //文章标题不能重复
 
-    @Column
-    private String content;
+    @Column(name = "content", nullable = false)
+    private String content;         //文章内容
 
-    @Column(name = "publish_time")
-    private Date publishTime;
+    @Column(name = "publish_time", nullable = false)
+    private Date publishTime;       //文章发布时间
 
     @ManyToOne
-    @JoinColumn(name = "eId", referencedColumnName = "eId")
-    private Employee employee;
+    @JoinColumn(name = "eId", referencedColumnName = "eId", nullable = false)
+    private Employee employee;          //文章发布作者Id
 
     @Column(name = "gmt_create", insertable = true, updatable = false)
     private Date gmtCrete;      //数据创建时间

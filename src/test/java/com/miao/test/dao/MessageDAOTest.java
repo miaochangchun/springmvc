@@ -29,12 +29,12 @@ public class MessageDAOTest {
     @Test
     public void addMessage() throws Exception {
         Message message = new Message();
-        message.setContent("this is good morning");
-        message.setEmployee(employeeDAO.findEmployeeById((long) 3));
+        message.setContent("这是答案2");
+        message.setEmployee(employeeDAO.findEmployeeById((long) 2));
         message.setGmtCrete(new Date());
         message.setGmtModified(new Date());
         message.setPublishTime(new Date());
-        message.setTitle("this is test message3");
+        message.setTitle("这是问题2");
         System.out.println(message);
         dao.addMessage(message);
     }

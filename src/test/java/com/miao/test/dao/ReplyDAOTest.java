@@ -1,5 +1,6 @@
 package com.miao.test.dao;
 
+import com.miao.test.pojo.Employee;
 import com.miao.test.pojo.Reply;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -30,11 +33,12 @@ public class ReplyDAOTest {
     @Test
     public void addReplay() throws Exception {
         Reply reply = new Reply();
-        reply.setEmployee(employeeDAO.findEmployeeById((long) 4));
-        reply.setMessage(messageDAO.findMessageById((long) 4));
+        Employee employee1 = employeeDAO.findEmployeeById((long) 3);
+        reply.setEmployee(employee1);
+        reply.setMessage(messageDAO.findMessageById((long) 1));
         reply.setGmtCrete(new Date());
         reply.setGmtCrete(new Date());
-        reply.setContent("this is new reply message.");
+        reply.setContent("this is new reply message.3");
         reply.setReplyTime(new Date());
         System.out.println(reply);
         replyDAO.addReplay(reply);

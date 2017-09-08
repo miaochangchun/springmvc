@@ -13,6 +13,19 @@
     <title>企业日常事务管理系统-发布新消息</title>
     <link href="css/css.css" type="text/css" rel="stylesheet" media="all" />
     <script src="js/menu.js" type="text/javascript"></script>
+    <script src="/ueditor/ueditor.config.js"></script>
+    <script src="/ueditor/ueditor.all.min.js"></script>
+    <script src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <%--<script id="container" name="content" type="text/plain">这里写你的初始化内容</script>--%>
+    <script type="text/javascript">
+//        var editor = UE.getEditor('container');
+        UE.getEditor('myEditor');
+//        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        function clearLocalData () {
+            UE.getEditor('myEditor').execCommand( "clearlocaldata" );
+            alert("已清空草稿箱")
+        }
+    </script>
 </head>
 <body>
 <div id="topexplain">企业日常事务管理系统，为企业内部通信提供最简便的服务！</div>
@@ -54,13 +67,15 @@
                     <c:otherwise>
                         <form action="msgPublish" method="post">
                             <p>消息标题：
-                                <input type="text" name="title" size="50"/>
+                                <input type="text" name="title" size="71"/>
                             </p>
-                            <p>消息内容： <input type="text" name="content" size="50"></p>
+
+                            <%--<p>消息内容： <input type="text" name="content" size="50"></p>--%>
+                            <p style="margin-top: 20px;margin-bottom: 20px;">消息内容：<textarea id="myEditor" name="content"></textarea></p>
 
                             <p align="center">
                                 <input type="submit" value="提交" />
-                                <input type="reset" value="重置" />
+                                <input type="reset" onclick="clearLocalData()" value="重置" />
                             </p>
                         </form>
                     </c:otherwise>

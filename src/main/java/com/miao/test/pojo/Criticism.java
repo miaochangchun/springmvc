@@ -11,19 +11,19 @@ public class Criticism {
     @Id@GeneratedValue
     private Long cId;
 
-    @Column
+    @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "criticism_time")
-    private Date criticismTime;
-
-    @OneToOne
-    @JoinColumn(name = "eId", referencedColumnName = "eId")
-    private Employee employee;
+    @Column(name = "criticism_time", nullable = false)
+    private Date criticismTime;                 //批复发表时间
 
     @ManyToOne
-    @JoinColumn(name = "mId", referencedColumnName = "mId")
-    private Message message;
+    @JoinColumn(name = "eId", referencedColumnName = "eId", nullable = false)
+    private Employee employee;                  //批复人Id，一个领导可以批复多个文章
+
+    @OneToOne
+    @JoinColumn(name = "mId", referencedColumnName = "mId", unique = true, nullable = false)
+    private Message message;            //每个文章，只允许有一个批复。是单向一对一，限定每条文章只能由一条批复。
 
     @Column(name = "gmt_create", insertable = true, updatable = false)
     private Date gmtCrete;      //数据创建时间

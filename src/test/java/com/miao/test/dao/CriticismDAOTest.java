@@ -35,7 +35,7 @@ public class CriticismDAOTest {
         criticism.setGmtCrete(new Date());
         criticism.setCriticismTime(new Date());
         criticism.setEmployee(employeeDAO.findEmployeeById((long) 3));
-        criticism.setMessage(messageDAO.findMessageById((long) 4));
+        criticism.setMessage(messageDAO.findMessageById((long) 2));
         System.out.println(criticism);
         criticismDAO.addCriticism(criticism);
     }

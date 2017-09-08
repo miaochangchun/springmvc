@@ -28,14 +28,14 @@ public class EmployeeDAOTest {
         Employee employee = new Employee();
         employee.setGmtModified(new Date());
         employee.setPlace("北京");
-        employee.setPassword("12346");
+        employee.setPassword("123456");
         employee.setGmtCrete(new Date());
         employee.setMale(true);
-        employee.setLead(false);
+        employee.setLead(true);
         employee.setBirth(new Date());
         employee.setJoinTime(new Date());
-        employee.setPhone("15468765123");
-        employee.setUsername("yang");
+        employee.setPhone("17610068133");
+        employee.setUsername("苗长春");
         dao.add(employee);
     }
 

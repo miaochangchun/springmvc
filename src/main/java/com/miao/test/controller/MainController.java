@@ -37,6 +37,11 @@ public class MainController {
     @Autowired
     private ReplyDAO replyDAO;
 
+//    @RequestMapping(value = "hello", method = RequestMethod.GET)
+//    public String hello() {
+//        return "hello";
+//    }
+
     @RequestMapping(value = "/statusRecognise", method = RequestMethod.GET)
     public String test() {
         System.out.println("====================");

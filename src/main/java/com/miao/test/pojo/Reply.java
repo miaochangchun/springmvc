@@ -2,6 +2,8 @@ package com.miao.test.pojo;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by 10048 on 2017/9/5.
@@ -11,19 +13,19 @@ public class Reply {
     @Id@GeneratedValue
     private Long rId;
 
-    @Column
-    private String content;
+    @Column(name = "content", nullable = false)
+    private String content;         //回复内容
 
-    @Column(name = "reply_time")
-    private Date replyTime;
+    @Column(name = "reply_time", nullable = false)
+    private Date replyTime;         //回复时间
 
     @ManyToOne
-    @JoinColumn(name = "mId", referencedColumnName = "mId")
-    private Message message;
+    @JoinColumn(name = "mId", referencedColumnName = "mId", nullable = false)
+    private Message message;        //一条消息可以有多个评论
 
-    @OneToOne
-    @JoinColumn(name = "eId", referencedColumnName = "eId")
-    private Employee employee;
+    @ManyToOne
+    @JoinColumn(name = "eId", referencedColumnName = "eId", nullable = false)
+    private Employee employee;      //一个评论由一个员工发出，一个员工可以发多个评论
 
     @Column(name = "gmt_create", insertable = true, updatable = false)
     private Date gmtCrete;      //数据创建时间
