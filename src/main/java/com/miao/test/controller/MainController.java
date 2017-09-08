@@ -9,6 +9,8 @@ import com.miao.test.pojo.Employee;
 import com.miao.test.pojo.Message;
 import com.miao.test.pojo.Reply;
 import com.miao.test.util.Page;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.SimpleTimeZone;
@@ -26,6 +30,8 @@ import java.util.SimpleTimeZone;
  */
 @Controller
 public class MainController {
+    private Logger log = LoggerFactory.getLogger(MainController.class);
+
     @Autowired
     private EmployeeDAO employeeDAO;
 
@@ -45,7 +51,14 @@ public class MainController {
 
     @RequestMapping(value = "/statusRecognise", method = RequestMethod.GET)
     public String test() {
-        System.out.println("====================");
+//        try {
+//            int a = 1 / 0;
+//        } catch (Exception e) {
+//            StringWriter sw = new StringWriter();
+//            PrintWriter pw = new PrintWriter(sw);
+//            e.printStackTrace(pw);
+//            log.error("main错误" + sw.toString());
+//        }
         return "statusRecognise";
     }
 
