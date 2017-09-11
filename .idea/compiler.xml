@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springmvc" />
+        <module name="affairmanager" />
+        <module name="votemanager" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="affairmanager" target="1.8" />
       <module name="springmvc" target="1.8" />
+      <module name="votemanager" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/affairmanager/affairmanager.iml" filepath="$PROJECT_DIR$/affairmanager/affairmanager.iml" />
       <module fileurl="file://$PROJECT_DIR$/springmvc.iml" filepath="$PROJECT_DIR$/springmvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/votemanager/votemanager.iml" filepath="$PROJECT_DIR$/votemanager/votemanager.iml" />
     </modules>
   </component>
 </project>
